@@ -1,6 +1,5 @@
 // Face count setting
-$fn=50; // Development (faster)
-//$fn=200; // Production (slow)
+$fn=50; // Rounded cylinder setting is different and below.
 
 BASE = 18; // Cherry caps are 18x18mm
 SPACING = 19.05;
@@ -36,7 +35,7 @@ module PWHRAO_Cluster() {
 // STKPW,PBLG,12378
 module normal_keycap() {
   difference() {
-    keyshape(BASE, [-2.5,0,11], [-2.5,0,11], [2.5,0,11], [2.5,0,11], 1, 1.5);
+    keyshape(BASE, [-2.25,0,11], [-2.25,0,11], [2.25,0,11], [2.25,0,11], 1, 1.5);
     synth();
   }
 }
@@ -59,9 +58,9 @@ module thumb_keycap() {
 
 module synth() {
 // ~:$ynth values
-translate([1.25, 1.25, 0])
+translate([1.45, 1.45, 0])
   // We could do 2 instead of 0 for br bl, but we want symmetrical.
-  keyshape(15.5, [-1,0,6.25], [-1,0,6.25], [1,0,6.25], [1,0,6.25], 0.25);
+  keyshape(15.1, [-1,0,6.25], [-1,0,6.25], [1,0,6.25], [1,0,6.25], 0.25);
 }
 
 /**
@@ -152,7 +151,7 @@ module keyshape(base, tr, br, bl, tl, r=0.01, dish_depth=0) {
             translate(center + (r-dish_depth)*direction)
               rotate([90, 0, 0])
               rotate([xrot,0,0])
-              cylinder(r=r,h=length_top_bottom+r*4, center=true);
+              cylinder(r=r,h=length_top_bottom+r*4, center=true, $fn=r*20);
         }
     }
   }
