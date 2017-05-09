@@ -107,7 +107,8 @@ module keyshape(base, tr, br, bl, tl, r=0.01, dish_depth=0) {
             translate(tr)
             sphere(r=r);
         }
-        cube([base+2*r,base+2*r,r]);
+        translate([-2*r, -2*r, 0])
+            cube([base+4*r,base+4*r,r]);
         if (dish_depth) {
             //dish_depth = dish_depth - 0.5;
             // We need to make a dish running top to bottom.
